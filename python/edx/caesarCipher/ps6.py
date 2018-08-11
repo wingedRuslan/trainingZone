@@ -102,7 +102,47 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        pass
+
+        # create list of ordered lowercase letters
+        lower_letters = []
+        for letter in string.ascii_lowercase:
+            lower_letters.append(letter)
+        print(len(lower_letters), lower_letters[0], lower_letters[25])
+        print("***********")
+        print(lower_letters)
+
+        # create list of ordered uppercase letters
+        upper_letters = []
+        for letter in string.ascii_uppercase:
+            upper_letters.append(letter)
+        print("***********")
+        print(upper_letters)
+
+        # initialize a basic dictionary 'a' = 'a', 'A' = 'A' etc
+        shiftedDict = {}
+        for letter in string.ascii_letters:
+            shiftedDict[letter] = letter
+
+        print(shiftedDict)
+        print(len(shiftedDict))
+
+        for key in lower_letters: #shiftedDict.keys():
+            current = lower_letters.index(key)
+            next = current + shift
+
+            if next > len(lower_letters):
+                next = next - len(lower_letters)
+
+            shiftedDict[key] = lower_letters[next]
+
+            shiftedDict[key.upper()] = lower_letters[next].upper()
+        print("********************************************************************")
+        print(shiftedDict)
+
+
+
+
+
 
     def apply_shift(self, shift):
         '''
@@ -116,7 +156,7 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         '''
-        pass
+        pass #delete this line and replace with your code here
 
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
@@ -126,10 +166,17 @@ class PlaintextMessage(Message):
         text (string): the message's text
         shift (integer): the shift associated with this message
 
+        A PlaintextMessage object inherits from Message and has five attributes:
+            self.message_text (string, determined by input text)
+            self.valid_words (list, determined using helper function load_words)
+            self.shift (integer, determined by input shift)
+            self.encrypting_dict (dictionary, built using shift)
+            self.message_text_encrypted (string, created using shift)
+
         Hint: consider using the parent class constructor so less 
         code is repeated
         '''
-        pass
+        pass #delete this line and replace with your code here
 
     def get_shift(self):
         '''
@@ -137,7 +184,7 @@ class PlaintextMessage(Message):
         
         Returns: self.shift
         '''
-        pass
+        pass #delete this line and replace with your code here
 
     def get_encrypting_dict(self):
         '''
@@ -145,7 +192,7 @@ class PlaintextMessage(Message):
         
         Returns: a COPY of self.encrypting_dict
         '''
-        pass
+        pass #delete this line and replace with your code here
 
     def get_message_text_encrypted(self):
         '''
@@ -153,7 +200,7 @@ class PlaintextMessage(Message):
         
         Returns: self.message_text_encrypted
         '''
-        pass
+        pass #delete this line and replace with your code here
 
     def change_shift(self, shift):
         '''
@@ -166,7 +213,7 @@ class PlaintextMessage(Message):
 
         Returns: nothing
         '''
-        pass
+        pass #delete this line and replace with your code here
 
 
 class CiphertextMessage(Message):
@@ -180,7 +227,7 @@ class CiphertextMessage(Message):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass
+        pass #delete this line and replace with your code here
 
     def decrypt_message(self):
         '''
@@ -191,10 +238,14 @@ class CiphertextMessage(Message):
         the message, then we would expect 26 - s to be the best shift value 
         for decrypting it.
 
+        Note: if multiple shifts are  equally good such that they all create
+        the maximum number of you may choose any of those shifts (and their
+        corresponding decrypted messages) to return
+
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
         '''
-        pass
+        pass #delete this line and replace with your code here
 
 #Example test case (PlaintextMessage)
 plaintext = PlaintextMessage('hello', 2)
