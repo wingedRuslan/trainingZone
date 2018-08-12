@@ -54,6 +54,16 @@ def get_story_string():
     f.close()
     return story
 
+
+def decrypt_story():
+    jokeStory = get_story_string()
+
+    cipherText = CiphertextMessage(jokeStory)
+
+    decryptedStory = cipherText.decrypt_message()
+
+    return decryptedStory
+
 WORDLIST_FILENAME = 'words.txt'
 
 class Message(object):
