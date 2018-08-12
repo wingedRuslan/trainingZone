@@ -34,10 +34,11 @@ def is_word(word_list, word):
     Returns: True if word is in word_list, False otherwise
 
     Example:
-    >>> is_word(word_list, 'bat') returns
-    True
-    >>> is_word(word_list, 'asdf') returns
-    False
+    is_word(word_list, 'bat')
+    return True
+
+    is_word(word_list, 'asdf')
+    return False
     '''
     word = word.lower()
     word = word.strip(" !@#$%^&*()-_+={}[]|\:;'<>?,./\"")
@@ -250,7 +251,7 @@ class CiphertextMessage(Message):
         the message, then we would expect 26 - s to be the best shift value 
         for decrypting it.
 
-        Note: if multiple shifts are  equally good such that they all create
+        if multiple shifts are  equally good such that they all create
         the maximum number of you may choose any of those shifts (and their
         corresponding decrypted messages) to return
 
@@ -258,9 +259,27 @@ class CiphertextMessage(Message):
         and the decrypted message text using that shift value
         '''
 
-        words = self.message_text.split(" ")
+        # dict contains the score to each possible shift, shift -> score
+        score_dict = {}
 
-        
+        best_shift = 0
+        for possible_shift in range(26):
+            decrypted_text = Message.apply_shift(self, possible_shift)
+            decrypted_list = decrypted_text.split(" ")
+
+            score = 0
+            for word in decrypted_list:
+                if is_word(self.valid_words, word):
+                    score += 1
+
+            if score > best_shift:
+                best_shift = possible_shift
+
+            score_dict[possible_shift] = (score, decrypted_text)
+
+        res_tuple = (best_shift, score_dict[best_shift][1])
+
+        return res_tuple
 
 
 #Example test case (PlaintextMessage)
