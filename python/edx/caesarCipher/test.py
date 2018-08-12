@@ -1,5 +1,5 @@
 from ps6 import *
 
-p = Message("bla")
+p = CiphertextMessage("abc Ruskan")
 
-p.build_shift_dict(4)
+p.decrypt_message()
